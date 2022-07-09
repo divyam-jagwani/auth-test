@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Vanilla JavaScript App</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
-  <script src='sample.js'></script>
-  <title>A day without laughter is a day wasted.</title>
-</head>
+  <body>
+    <main>
+      <h1>Vanilla JavaScript App</h1>
+      <p>Loading content from the API: <b id="message"></b></b></p>
+    </main>
+  </body>
 
-<body>
-  <main>
-    <div id="wrap">
-      <div class="bg">
-        <img class="layer2" src="bg.jpeg" alt="" />
-        <h1 class="layer1">A day without laughter is a day wasted.</h1>
-      </div>
-      <div class="cont">
-        <p>The class teacher asks students to name an animal that begins with an “E”. One boy says, “Elephant.”</p>
-        <p>Then the teacher asks for an animal that begins with a “T”. The same boy says, “Two elephants.”</p>
-        <p>The teacher sends the boy out of the class for bad behavior. After that she asks for an animal beginning with “M”.</p>
-        <p>The boy shouts from the other side of the wall: “Maybe an elephant!”</p>
-      </div>
-    </div>
-  </main>
-</body>
+  <script>
+    (async function () {
+      let response = await fetch(`api/message`);
+      let message = await response.json();
 
+      document.querySelector("#message").innerHTML = message.text
+    })();
+  </script>
 </html>
