@@ -11,6 +11,7 @@
     <main>
       <h1>Vanilla JavaScript App</h1>
       <p>Loading content from the API: <b id="message"></b></b></p>
+      <p>Loading content from the Host prefix: <b id="hostmessage"></b></b></p>
     </main>
   </body>
 
@@ -19,7 +20,12 @@
       let response = await fetch(`api/testfunc`);
       let message = await response.json();
 
-      document.querySelector("#message").innerHTML = message.text
+      document.querySelector("#message").innerHTML = message
+      
+      let response2 = await fetch(`api/hostcookie`);
+      let message2 = await response2.json();
+
+      document.querySelector("#hostmessage").innerHTML = message2
     })();
   </script>
 </html>
