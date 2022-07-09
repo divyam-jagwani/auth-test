@@ -16,7 +16,7 @@
 
   <script>
     (async function () {
-      let response = await fetch(`api/testfunc?code=hmDytO2YYmx7jKOjo9NTyiE74wdTsF3U970tC00ncYmsAzFuTJg-BA==`);
+      let response = await fetch(`api/testfunc`);
       let message = await response.json();
 
       document.querySelector("#message").innerHTML = message.text
