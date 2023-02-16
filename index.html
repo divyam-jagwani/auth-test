@@ -12,9 +12,10 @@ async function getUserInfo() {
   const { clientPrincipal } = payload;
   return clientPrincipal;
 }
-var userInfo = await getUserInfo()
+getUserInfo().then((userInfo) => {
 console.log(userInfo);
 document.getElementById("demo").innerHTML = userInfo;
+})
 </script>
 </body>
 </html>
