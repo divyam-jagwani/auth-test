@@ -14,7 +14,7 @@ async function getUserInfo() {
 }
 getUserInfo().then((userInfo) => {
 console.log(userInfo);
-document.getElementById("demo").innerHTML = userInfo;
+document.getElementById("demo").innerHTML = userInfo?.userDetails;
 })
 </script>
 </body>
