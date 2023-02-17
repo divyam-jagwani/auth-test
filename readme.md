@@ -1,7 +1,45 @@
-This site has an issue where when you logout of the app, it automatically logs you back in.
-Example: https://jolly-meadow-09a103c10.2.azurestaticapps.net
+## Using facebook as auth provider
 
-There are two approaches on how to unblock here:
+Please follow these docs to setup Facebook as provider: https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-custom?tabs=facebook%2Cinvitations#configure-a-custom-identity-provider
 
-1. Modifying the swa config to expose one endpoint for anonymous access. More details and sample code at https://github.com/vivekjilla/auth-test/tree/aadb2c
-2. Logging the user out of AAD B2C provider (incase they use it) before logging out of SWA. More details and sample code at https://github.com/vivekjilla/auth-test/tree/blank_login
+### While logging in to app, if you see the 403 error, it's possible that we're not receiving email claim from the fb. 
+
+There are two ways to solve this:
+1. Add `email` scopes to start receiving the email id, as below.
+
+```diff
+{
+  "auth": {
+    "identityProviders": {
+      "facebook": {
+        "registration": {
+          "appIdSettingName": "FACEBOOK_APP_ID",
+          "appSecretSettingName": "FACEBOOK_APP_SECRET"
+        },
++      "login": {
++         "scopes":["email"]
++       }    
+      }
+    }
+  }
+}
+```
+
+2. Change the claim we are checking for to get user details, by adding userDetailsClaim pointing to `nameidentifier`, as below.
+This is useful in case someone doesn't have a valid email id as well.
+
+```diff
+{
+  "auth": {
+    "identityProviders": {
+      "facebook": {
+        "registration": {
+          "appIdSettingName": "FACEBOOK_APP_ID",
+          "appSecretSettingName": "FACEBOOK_APP_SECRET"
+        },
++       "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      }
+    }
+  }
+}
+```
