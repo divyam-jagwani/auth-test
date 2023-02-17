@@ -18,9 +18,7 @@
           "appIdSettingName": "FACEBOOK_APP_ID",
           "appSecretSettingName": "FACEBOOK_APP_SECRET"
         },
-       "login": {
-          "scopes":["email"]
-        }    
+        "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"   
       }
     }
   }
